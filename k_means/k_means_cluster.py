@@ -48,11 +48,17 @@ data_dict.pop("TOTAL", 0)
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+feature_3 = "total_payments"
 poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
 
+from sklearn import preprocessing
+
+scaler = preprocessing.MinMaxScaler().fit(data)
+
+print scaler.transform([[0, 200000, 1000000]])
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
@@ -65,8 +71,22 @@ plt.show()
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
 
+from sklearn.cluster import KMeans
 
+pred = KMeans(n_clusters=2).fit_predict(finance_features)
 
+def findMinMax(data_dict, feature):
+	values = []
+	for key, value in data_dict.iteritems():
+	        val = value[feature]
+	        if val != "NaN":
+        	        values.append(val)
+
+	print feature, " min: ", min(values)
+	print feature, " max: ", max(values)
+
+findMinMax(data_dict, "exercised_stock_options")
+findMinMax(data_dict, "salary")
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
