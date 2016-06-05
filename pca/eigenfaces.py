@@ -66,7 +66,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 ###############################################################################
 # Compute a PCA (eigenfaces) on the face dataset (treated as unlabeled
 # dataset): unsupervised feature extraction / dimensionality reduction
-n_components = 150
+n_components = 250 #[10, 15, 25, 50, 100, 250]
 
 print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
 t0 = time()
@@ -79,6 +79,10 @@ print "Projecting the input data on the eigenfaces orthonormal basis"
 t0 = time()
 X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
+
+print "variance for 1st component: ", pca.explained_variance_ratio_[0]
+print "variance for 2nd component: ", pca.explained_variance_ratio_[1]
+
 print "done in %0.3fs" % (time() - t0)
 
 
