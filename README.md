@@ -1,5 +1,5 @@
 # Intro to Machine Learning
-My solutions for Udacity's Intro to Machine Learning projects. 
+My solutions for [Udacity's Intro to Machine Learning](https://www.udacity.com/course/intro-to-machine-learning--ud120) projects. 
 
 Initially cloned from [Udacity's Intro to Machine Learning repository](https://github.com/udacity/ud120-projects).
 
